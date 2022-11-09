@@ -75,6 +75,15 @@ function print_html_head($root, $description='Denní menu restaurací v okolí')
     })(window, document, "clarity", "script", "egdvidxpxr");
 </script>
 
+<script type="text/javascript">
+  window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName("head")[0];
+    var c=d.createElement("script");o.api=new Array();c.async=true;c.type="text/javascript";
+    c.charset="utf-8";c.src="https://web-sdk.smartlook.com/recorder.js";h.appendChild(c);
+    })(document);
+    smartlook("init", "5c0995dd07a2a6e52abe31c9f04aeba699c859db", { region: "eu" });
+</script>
+
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
