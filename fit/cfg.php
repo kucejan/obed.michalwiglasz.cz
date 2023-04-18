@@ -22,7 +22,7 @@ $sources = [
 	new Source(new Nepal),
 	new Source(new Bistro53),
 	new Source(new MenickaCz(6714, 'Velorex', 'http://www.restauracevelorex.cz/', 'velorex')),
-	new Source(new Zomato(16505880, 'Yvy Restaurant', 'http://www.yvy.cz/', 'yvy')),
+	new Source(new MenickaCz(2767, 'Yvy Restaurant', 'http://www.yvy.cz/', 'yvy')),
 	new Source(new CharliesMill),
 	new Source(new KlubCestovatelu),
 	new Source(new MenickaCz(5335, 'Správné místo', 'http://spravnemisto.cz/', 'spravnemisto')),
