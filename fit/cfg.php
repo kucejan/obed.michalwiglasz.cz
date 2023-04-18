@@ -21,7 +21,6 @@ $sources = [
 	new Source(new Zomato(16506806, 'Pad Thai', 'http://padthairestaurace.cz/', 'thailand')),
 	new Source(new Nepal),
 	new Source(new Bistro53),
-	new Source(new MenickaCz(6714, 'Velorex', 'http://www.restauracevelorex.cz/', 'velorex')),
 	new Source(new MenickaCz(2767, 'Yvy Restaurant', 'http://www.yvy.cz/', 'yvy')),
 	new Source(new CharliesMill),
 	new Source(new KlubCestovatelu),
