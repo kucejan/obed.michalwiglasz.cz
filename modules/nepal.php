@@ -11,7 +11,7 @@ class Nepal extends LunchMenuSource
 		$cached = $this->downloadHtml($cacheSourceExpires);
 		$result = new LunchMenuResult($cached['stored']);
 
-		$table = $cached['html']->find(".the_content_wrapper table", 0);
+		$table = $cached['html']->find(".the_content_wrapper table", 2);
 		$today = mb_strtolower(date('l', $todayDate));
 		$group = NULL;
 
