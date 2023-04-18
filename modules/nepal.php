@@ -27,7 +27,7 @@ class Nepal extends LunchMenuSource
 					// monday is seen twice, so we check it really is different day
 					$s = mb_strtolower($span->plaintext, 'utf-8');
 					if (strpos($s, $today) === FALSE) {
-						return $result; // nothing more to do...
+						break; // nothing more to do...
 					}
 
 				} else {
@@ -39,8 +39,11 @@ class Nepal extends LunchMenuSource
 					if (empty($tds[1])) $price = "?";
 					else $price = implode('', $tds[1]->find('text'));
 
+					$what = str_replace("\xc2\xa0", "\x20", $what); // replace UTF-8 non-breaking spaces
 					$what = trim(preg_replace('(\\([0-9,]+\\)\\s*$)', '', $what));
-					$result->dishes[] = new Dish($what, $price, NULL, $group);
+
+					if (!empty($what))
+						$result->dishes[] = new Dish($what, $price, NULL, $group);
 				}
 
 			} else {
