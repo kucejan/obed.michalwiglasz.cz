@@ -22,7 +22,7 @@ class PadThai extends LunchMenuSource
 		$output = preg_replace('![ ]+!', ' ', $output); # reduce spaces
 		$output = preg_replace('![\n]+!', '', $output); # remove newlines
 
-		$substrs = preg_split('/\s*(Pondělí|Úterý|Středa|ýtvrtek|Pátek|Seznam alergenů)\s*/', $output);
+		$substrs = preg_split('/\s*(Pondělí|Úterý|Středa|Čtvrtek|ýtvrtek|Pátek|Seznam alergenů)\s*/', $output);
 		$weekmenu = array_slice($substrs, 1, 5);
 		$daymenu = $weekmenu[$today];
 
