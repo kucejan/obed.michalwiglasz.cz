@@ -17,12 +17,12 @@ $menza_open = strtotime('2018-09-17 00:00:01');
 
 
 $sources = [
-	new Source(new MenickaCz(3225, 'U 3 opic', 'http://www.u3opic.cz/', 'monkey')),
-	new Source(new PadThai),
+	new Source(new MenickaCz(3225, 'U 3 opic', 'http://www.u3opic.cz/', 'u3opic')),
+	new Source(new MenickaCz(8483, 'Pad Thai', 'http://www.padthairestaurace.cz', 'thailand')),
 	new Source(new Nepal),
 	new Source(new Bistro53),
-	new Source(new MenickaCz(2767, 'Yvy Restaurant', 'http://www.yvy.cz/', 'yvy')),
-	new Source(new CharliesMill),
+	new Source(new MenickaCz(2767, 'Yvy Restaurant', 'http://www.yvy.cz/', 'yvy.svg')),
+	new Source(new Charlies('Charlie\'s Mill', 'https://www.charliesmill.cz')),
 	new Source(new KlubCestovatelu),
 	new Source(new MenickaCz(5335, 'Správné místo', 'http://spravnemisto.cz/', 'spravnemisto')),
 	new Source(new MenickaCz(3874, 'U Mušketýra', 'https://www.musketyrbrno.cz/', 'musketyr')),
