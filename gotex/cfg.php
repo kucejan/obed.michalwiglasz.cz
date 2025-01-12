@@ -24,5 +24,6 @@ $sources = [
 	new Source(new MenickaCz(5448, 'Light of India', 'http://www.lightofindia.cz/lang-cs/denni-menu', 'india')),
 	new Source(new MenickaCz(4116, 'Padagali', 'https://padagali.cz/', 'pagadali')),
 	new Source(new MenickaCz(6694, 'Bistro Ministerio', 'https://ministerio.cz/', 'ministerio')),
+	new Source(new FreshMenu),
 	new Source(new Tao),
 ];
