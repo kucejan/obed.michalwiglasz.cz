@@ -21,4 +21,5 @@ $sources = [
 	new Source(new MenickaCz(2721, 'Šelepka', 'http://www.selepova.cz/denni-menu/', 'selepka')),
 	new Source(new MenickaCz(3882, 'Naber si', 'http://nabersi.cz/', 'nabersi')),
 	new Source(new MenickaCz(3185, 'Zelená kočka', 'https://www.zelenakocka.cz/', 'kocka')),
+	new Source(new Tao),
 ];
