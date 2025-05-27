@@ -3,64 +3,56 @@
 class Nepal extends LunchMenuSource
 {
 	public $title = 'Nepal';
-	public $link = 'https://nepalbrno.cz/weekly-menu/';
+	public $link = 'https://nepalbrno.cz/poledni.php';
 	public $icon = 'nepal';
 
 	public function getTodaysMenu($todayDate, $cacheSourceExpires)
 	{
 		$cached = $this->downloadHtml($cacheSourceExpires);
 		$result = new LunchMenuResult($cached['stored']);
+		$html = $cached['html'];
 
-		$table = $cached['html']->find(".the_content_wrapper table", 2);
-		$today = mb_strtolower(date('l', $todayDate));
-		$group = NULL;
+		$todayString = mb_strtolower(date('l', $todayDate), 'utf-8');
 
-		if (!$table) {
-			throw new ScrapingFailedException(".the_content_wrapper table not found");
+		$specialsContainer = $html->find('div#specialsContainer', 0);
+		if (!$specialsContainer) {
+			$specialsContainer = $html->find('div.specials-container', 0); //fallback
 		}
 
-		$withinToday = FALSE;
-		foreach ($table->find('tr') as $tr) {
-			$span = $tr->find('span', 0);
-			if ($withinToday) {
-				if ($span) {
-					// monday is seen twice, so we check it really is different day
-					$s = mb_strtolower($span->plaintext, 'utf-8');
-					if (strpos($s, $today) === FALSE) {
-						break; // nothing more to do...
-					}
+		if (!$specialsContainer) {
+			throw new ScrapingFailedException("div#specialsContainer or div.specials-container not found");
+		}
 
-				} else {
-					$tds = $tr->find('td');
-					// after friday, there are rows with colspan=3
-					if (!empty($tds[0]->colspan)) break;
+		foreach ($specialsContainer->find('div.day-section') as $daySection) {
+			$dayTitleElement = $daySection->find('h2.day-title', 0);
+			if (!$dayTitleElement) {
+				continue;
+			}
+			$dayName = trim(mb_strtolower($dayTitleElement->plaintext, 'utf-8'));
 
-					$what = implode('', $tds[0]->find('text'));
-					if (empty($tds[1])) $price = "?";
-					else $price = implode('', $tds[1]->find('text'));
+			if (strpos($dayName, $todayString) === false) {
+				continue;
+			}
 
-					$what = str_replace("\xc2\xa0", "\x20", $what); // replace UTF-8 non-breaking spaces
-					$what = trim(preg_replace('(\\([0-9,]+\\)\\s*$)', '', $what));
+			foreach ($daySection->find('div.category-group') as $categoryGroup) {
+				$categoryNameElement = $categoryGroup->find('h3.category-name', 0);
+				$group = $categoryNameElement ? $categoryNameElement->plaintext : null;
 
-					if (!empty($what))
-						$result->dishes[] = new Dish($what, $price, NULL, $group);
-				}
+				foreach ($categoryGroup->find('div.menu-items div.menu-item') as $menuItem) {
+					$dishNameElement = $menuItem->find('h3', 0);
+					$priceElement = $menuItem->find('span', 0);
 
-			} else {
-				if ($span) {
-					$s = mb_strtolower($span->plaintext, 'utf-8');
-					//echo $s, $today;
-					if (strpos($s, $today) !== FALSE) {
-						//echo "setting to yes", $s, $today;
-						$withinToday = TRUE;
-						$day = $span->plaintext;
-						$group = str_replace("/", " / ", $day);
-						continue;
+					if ($dishNameElement && $priceElement) {
+						$what = trim($dishNameElement->plaintext);
+						$price = trim($priceElement->plaintext);
+
+						if (!empty($what)) {
+							$result->dishes[] = new Dish($what, $price, null, $group);
+						}
 					}
 				}
 			}
 		}
-
 		return $result;
 	}
 }
