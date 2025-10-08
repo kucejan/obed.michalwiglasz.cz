@@ -12,7 +12,6 @@ if (isset($_GET['force'])) {
 }
 
 $sources = [
-	new Source(new MenickaCz(2721, 'Šelepka', 'http://www.selepova.cz/denni-menu/', 'selepka')),
 	new Source(new MenickaCz(5429, 'Bistro PLAC', 'https://bistroplac.cz/online-menu/section:obedove-menu-11-14h', 'plac')),
 	new Source(new MenickaCz(2724, 'Plzeňský Dvůr', 'https://www.plzenskydvur.cz/', 'plzen')),
 	new Source(new MenickaCz(5416, 'Restaurace Na Halách', 'https://www.sportcentrumluzanky.cz/restaurace/', 'haly')),
