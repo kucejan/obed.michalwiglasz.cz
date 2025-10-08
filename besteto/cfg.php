@@ -10,7 +10,6 @@ $sources = [
 	new Source(new Sono),
 	new Source(new MenickaCz(4838, 'Seven bistro', 'https://www.facebook.com/7FoodTrio/', 'seven')),
 	new Source(new MenickaCz(5350, 'Restaurace U Putchy', 'https://putcha.webnode.cz/', 'putcha')),
-	new Source(new MenickaCz(2721, 'Šelepka', 'http://www.selepova.cz/denni-menu/', 'selepka')),
 	new Source(new ZelenaKocka),
 	new Source(new Zomato(18397993, 'Zdravý život', 'https://www.zzbrno.cz/menu.htm', 'health')),
 	new Source(new Zomato(16507106, 'Oaza', null, 'palm')),

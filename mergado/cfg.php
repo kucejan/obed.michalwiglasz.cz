@@ -17,7 +17,6 @@ $sources = [
 	new Source(new MenickaCz(4838, 'Seven bistro', 'https://www.facebook.com/7FoodTrio/', 'seven')),
 	new Source(new Zomato(16506537, 'Everest', 'http://everestbrno.cz/index.html', 'everest')),
 	new Source(new Zomato(18578705, 'Siwa', 'http://www.siwaorient.cz/', 'siwa')),
-	new Source(new MenickaCz(2721, 'Šelepka', 'http://www.selepova.cz/denni-menu/', 'selepka')),
 	new Source(new ZelenaKocka),
 	new Source(new NaberSi),
 	new Source(new UMlsnychKocek),
