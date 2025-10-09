@@ -12,16 +12,17 @@ if (isset($_GET['force'])) {
 }
 
 $sources = [
-	new Source(new MenickaCz(5429, 'Bistro PLAC', 'https://bistroplac.cz/online-menu/section:obedove-menu-11-14h', 'plac')),
+	// sorted by walking time from gotex, from closest to farthest
+	new Source(new FreshMenu),
+	new Source(new MenickaCz(5448, 'Light of India', 'http://www.lightofindia.cz/lang-cs/denni-menu', 'india')),
 	new Source(new MenickaCz(2724, 'Plzeňský Dvůr', 'https://www.plzenskydvur.cz/', 'plzen')),
-	new Source(new MenickaCz(5416, 'Restaurace Na Halách', 'https://www.sportcentrumluzanky.cz/restaurace/', 'haly')),
+	new Source(new MenickaCz(3854, 'Na Růžku', 'https://www.naruzkubrno.cz/tydenni-menu/', 'ruzek')),
 	new Source(new MenickaCz(2609, 'Pizzeria Al Capone', 'https://www.pizzaalcapone.cz/poledni-menu', 'alcapone')),
 	new Source(new MenickaCz(6468, 'Divá Bára', 'https://www.restauracedivabara.cz/menu/', 'bara')),
 	new Source(new MenickaCz(2752, 'U Dřeváka Beer&Grill', 'https://udrevaka.cz/pages/poledni-menu', 'drevak')),
-	new Source(new MenickaCz(3854, 'Na Růžku', 'https://www.naruzkubrno.cz/tydenni-menu/', 'ruzek')),
-	new Source(new MenickaCz(5448, 'Light of India', 'http://www.lightofindia.cz/lang-cs/denni-menu', 'india')),
-	new Source(new MenickaCz(4116, 'Padagali', 'https://padagali.cz/', 'pagadali')),
-	new Source(new MenickaCz(6694, 'Bistro Ministerio', 'https://ministerio.cz/', 'ministerio')),
-	new Source(new FreshMenu),
 	new Source(new Tao),
+	new Source(new MenickaCz(5429, 'Bistro PLAC', 'https://bistroplac.cz/online-menu/section:obedove-menu-11-14h', 'plac')),
+	new Source(new MenickaCz(6694, 'Bistro Ministerio', 'https://ministerio.cz/', 'ministerio')),
+	new Source(new MenickaCz(4116, 'Padagali', 'https://padagali.cz/', 'pagadali')),
+	new Source(new MenickaCz(5416, 'Restaurace Na Halách', 'https://www.sportcentrumluzanky.cz/restaurace/', 'haly')),
 ];
