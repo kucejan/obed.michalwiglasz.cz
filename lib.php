@@ -6,6 +6,8 @@ require_once __DIR__ . '/string.php';
 require_once __DIR__ . '/simple_html_dom.php';
 require_once __DIR__ . '/pdf2text.php';
 
+require_once __DIR__ . '/pdfparser/alt_autoload.php-dist';
+
 define('CACHE_DIR', __DIR__ . '/cache');
 
 // load modules
