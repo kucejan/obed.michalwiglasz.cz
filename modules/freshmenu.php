@@ -12,7 +12,10 @@ class FreshMenu extends LunchMenuSource
 	public function __construct($restaurant = 'Centrum Šumavská')
 	{
 		$this->restaurant = mb_strtolower($restaurant);
+	}
 
+	public function getTodaysMenu($todayDate, $cacheSourceExpires)
+	{
 		$web = $this->downloadHtml($cacheSourceExpires, $this->link);
 		$menus = $web['html']->find("nav ul li ul.sub-menu li a");
 
@@ -22,10 +25,10 @@ class FreshMenu extends LunchMenuSource
 
 			$this->sourceLink = $menu->attr['href'];
 		}
-	}
 
-	public function getTodaysMenu($todayDate, $cacheSourceExpires)
-	{
+		if (!$this->sourceLink)
+			throw new ScrapingFailedException("PDF link not found");
+
 		$cached = $this->downloadRaw($cacheSourceExpires);
 		$today = date('N', $todayDate) - 1;  // 0 = monday, 6 = sunday
 		$result = new LunchMenuResult($cached['stored']);

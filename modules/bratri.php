@@ -7,25 +7,19 @@ class Bratri extends LunchMenuSource
 	public $icon = 'bratri';
 	public $note = 'Silně experimentální, menu se tahá z PDF, lepší zdroj asi není.';
 
-	public function __construct()
+	public function getTodaysMenu($todayDate, $cacheSourceExpires)
 	{
 		$web = $this->downloadHtml($cacheSourceExpires, $this->link);
 
 		$iframe = $web['html']->find("div.elementor-widget-pdf_viewer iframe", 0);
 		if (!$iframe)
-			return;
+			throw new ScrapingFailedException("iframe not found");
 
 		$menu = $iframe->attr['src'];
 		if (!preg_match("@($this->link.*\.pdf)@u", $menu, $matches))
-			return;
+			throw new ScrapingFailedException("PDF link not found");
 
 		$this->sourceLink = $matches[0];
-	}
-
-	public function getTodaysMenu($todayDate, $cacheSourceExpires)
-	{
-		if (!$this->sourceLink)
-			return;
 
 		$cached = $this->downloadRaw($cacheSourceExpires);
 		$today = date('N', $todayDate) - 1;  // 0 = monday, 6 = sunday
