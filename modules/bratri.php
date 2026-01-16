@@ -39,6 +39,8 @@ class Bratri extends LunchMenuSource
 		$weekmenu = array_slice($substrs, 1, 5);
 		$daymenu = $weekmenu[$today];
 
+		$daymenu = preg_replace('![\n]+([^0-9]+)!', '${1}', $daymenu); # remove line breaks
+
 		$dishes = explode("\n", $daymenu);
 
 		foreach ($dishes as $item) {
