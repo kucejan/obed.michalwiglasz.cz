@@ -26,6 +26,7 @@ $sources = [
 	new Source(new Tao),
 	new Source(new Bratri),
 	new Source(new MenickaCz(5429, 'Bistro PLAC', 'https://bistroplac.cz/online-menu/section:obedove-menu-11-14h', 'plac')),
+	new Source(new MaHostina),
 	new Source(new MenickaCz(6694, 'Bistro Ministerio', 'https://ministerio.cz/', 'ministerio')),
 	new Source(new MenickaCz(4116, 'Padagali', 'https://padagali.cz/', 'pagadali')),
 	new Source(new MenickaCz(5416, 'Restaurace Na Halách', 'https://www.sportcentrumluzanky.cz/restaurace/', 'haly')),
