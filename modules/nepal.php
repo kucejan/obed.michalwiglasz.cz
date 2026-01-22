@@ -3,7 +3,7 @@
 class Nepal extends LunchMenuSource
 {
 	public $title = 'Nepal';
-	public $link = 'https://nepalbrno.cz/poledni.php';
+	public $link = 'https://nepalbrno.cz/NepalBrno/poledni.php';
 	public $icon = 'nepal';
 
 	public function getTodaysMenu($todayDate, $cacheSourceExpires)
