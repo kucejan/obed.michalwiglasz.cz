@@ -22,7 +22,7 @@ class HostinecPodSchody extends LunchMenuSource
 
 			$daymenu = preg_match("/^$today/ui", $node->plaintext);
 			$weekmenu = preg_match('/týdenní/ui', $node->plaintext);
-			if (!$daymenu) // && !$weekmenu
+			if (!$daymenu && !$weekmenu)
 				continue;
 
 			$lines = $item->find("li");
