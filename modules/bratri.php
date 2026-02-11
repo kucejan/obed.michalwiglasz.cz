@@ -3,7 +3,7 @@
 class Bratri extends LunchMenuSource
 {
 	public $title = 'U Nemilosrdných bratří';
-	public $link = 'https://zelenakocka.cz/';
+	public $link = 'https://unemilosrdnychbratri.cz/';
 	public $icon = 'bratri';
 	public $note = 'Silně experimentální, menu se tahá z PDF, lepší zdroj asi není.';
 
@@ -11,15 +11,11 @@ class Bratri extends LunchMenuSource
 	{
 		$web = $this->downloadHtml($cacheSourceExpires, $this->link);
 
-		$iframe = $web['html']->find("div.elementor-widget-pdf_viewer iframe", 0);
-		if (!$iframe)
-			throw new ScrapingFailedException("iframe not found");
+		$ahref = $web['html']->find("div.menu div.menu-downloads a", 1);
+		if (!$ahref)
+			throw new ScrapingFailedException("ahref not found");
 
-		$menu = $iframe->attr['src'];
-		if (!preg_match("@($this->link.*\.pdf)@u", $menu, $matches))
-			throw new ScrapingFailedException("PDF link not found");
-
-		$this->sourceLink = $matches[0];
+		$this->sourceLink = $ahref->attr['href'];
 
 		$cached = $this->downloadRaw($cacheSourceExpires);
 		$today = date('N', $todayDate) - 1;  // 0 = monday, 6 = sunday
