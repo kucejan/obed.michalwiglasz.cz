@@ -29,5 +29,4 @@ $sources = [
 	new Source(new MenickaCz(4919, 'Borgeska', 'https://www.restauraceborgeska.cz/', 'borgeska')),
 	new Source(new KlubCestovatelu),
 	new Source(new Bistro53),
-	new Source(new BioBistroSpirala),
 ];

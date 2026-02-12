@@ -24,7 +24,6 @@ $sources = [
 	new Source(new Charlies('Charlie\'s Mill', 'https://www.charliesmill.cz')),
 	new Source(new KlubCestovatelu),
 	new Source(new MenickaCz(3874, 'U Mušketýra', 'https://www.musketyrbrno.cz/', 'musketyr')),
-	new Source(new BioBistroSpirala),
 ];
 
 
