@@ -31,11 +31,10 @@ class KlubCestovatelu extends LunchMenuSource
 
 			$soup = $day->next_sibling();
 			$menu = $soup->next_sibling();
-			while ($menu->tag != "ol" && $menu) {
+			while ($menu && $menu->tag != "ol") {
 				$menu = $menu->next_sibling();
 			}
 
-			$soup = $soup->find("p", 0);
 			if ($soup && $soup->tag == 'p' && trim(str_replace("\xc2\xa0", ' ', html_entity_decode($soup->plaintext))) != NULL) {
 				$result->dishes[] = new Dish(html_entity_decode($soup->plaintext));
 			}
