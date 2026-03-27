@@ -28,7 +28,7 @@ class Charlies extends LunchMenuSource
 		}
 
 		foreach ($tables as $table) {
-			$title = $table->find("th.table-title", 0)->plaintext;
+			$title = $this->normalizeText($table->find("th.table-title", 0)->plaintext);
 			$title_lc = mb_strtolower($title);
 
 			if (strpos($title_lc, $today) !== FALSE) {
@@ -60,10 +60,15 @@ class Charlies extends LunchMenuSource
 				continue;
 			}
 
-			$what = $tr->find('td', 0)->plaintext;
-			$price = $tr->find('td', 1)->plaintext;
+			$what = $this->normalizeText($tr->find('td', 0)->plaintext);
+			$price = $this->normalizeText($tr->find('td', 1)->plaintext);
 
 			$result->dishes[] = new Dish($what, $price, NULL, $group);
 		}
+	}
+
+	protected function normalizeText($text)
+	{
+		return trim(html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 	}
 }
