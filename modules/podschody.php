@@ -4,7 +4,7 @@ class HostinecPodSchody extends LunchMenuSource
 {
 	public $title = 'Hostinec Pod Schody';
 	public $link = 'https://hostinecpodschody.cz';
-	public $sourceLink = 'https://hostinecpodschody.cz/%f0%9f%8d%bd%ef%b8%8f-obedove-menu-hostinec-pod-schody/';
+	public $sourceLink = 'https://hostinecpodschody.cz/obedove-menu-hostinec-pod-schody/';
 	public $icon = 'podschody';
 
 	public function getTodaysMenu($todayDate, $cacheSourceExpires)
