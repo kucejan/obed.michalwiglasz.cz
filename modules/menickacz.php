@@ -33,8 +33,8 @@ class MenickaCz extends LunchMenuSource {
 			$priceTag = $dish->find("div.cena", 0);
 			if (!$nameTag) continue;
 
-			$name = iconv('windows-1250', 'utf-8', trim($nameTag->plaintext));
-			$price = ($priceTag) ? iconv('windows-1250', 'utf-8', trim($priceTag->plaintext)) : NULL;
+			$name = trim($nameTag->plaintext);
+			$price = ($priceTag) ? trim($priceTag->plaintext) : NULL;
 
 			$result->dishes[] = new Dish($name, $price);
 		}
