@@ -14,7 +14,6 @@ if (isset($_GET['force'])) {
 $sources = [
 	// sorted by walking time from gotex, from closest to farthest
 	new Source(new FreshMenu),
-	new Source(new Pelmeska),
 	new Source(new MenickaCz(9363, 'Bistro na Botance', 'https://www.facebook.com/BistroNaBotance', 'botanka')),
 	new Source(new MenickaCz(5448, 'Light of India', 'http://www.lightofindia.cz/lang-cs/denni-menu', 'india')),
 	new Source(new HostinecPodSchody),
