@@ -2,7 +2,7 @@
 
 class Flank extends LunchMenuSource
 {
-	public $title = 'Hostinec Pod Schody';
+	public $title = 'Flank';
 	public $link = 'https://www.flank.cz/';
 	public $sourceLink = 'https://www.flank.cz/denni-menu/';
 	public $icon = 'flank';
@@ -12,35 +12,21 @@ class Flank extends LunchMenuSource
 		$cached = $this->downloadHtml($cacheSourceExpires);
 		$result = new LunchMenuResult($cached['stored']);
 
-		$menu = $cached['html']->find("div ul li.denni_menu");
-		$today = get_czech_day(date('w', $todayDate));
+		$daily_menu = $cached['html']->find("div.daily-menu-day--active div.food-menu-item");
+		$weekly_menu = $cached['html']->find("div.weekly-menu div.food-menu-item");
 
-		foreach ($menu as $item) {
-			$node = $item->find("h2", 0);
-			if (!$node)
-				continue;
+		foreach ($daily_menu as $item) {
+			$row = $item->find("div.food-menu-item__row", 0);
+			$name = html_entity_decode($row->find("div.food-menu-item__name", 0)->plaintext);
+			$price = html_entity_decode($row->find("div.food-menu-item__price", 0)->plaintext);
+			$result->dishes[] = new Dish($name, $price);
+		}
 
-			$daymenu = preg_match("/^$today/ui", $node->plaintext);
-			$weekmenu = preg_match('/týdenní/ui', $node->plaintext);
-			if (!$daymenu && !$weekmenu)
-				continue;
-
-			$lines = $item->find("li");
-			foreach ($lines as $line) {
-				$dish = $line->plaintext;
-				$price = NULL;
-
-				if (preg_match('/([^–]*)\s*–\s*([^–]*)/u', $dish, $matches)) {
-					$dish = $matches[1];
-					$price = "$matches[2] Kč";
-				}
-
-				$lower = mb_strtolower($dish);
-				$dishlow = mb_substr($dish, 0, 1) . mb_substr($lower, 1);
-
-				$group = $weekmenu ? "Týdenní menu" : NULL;
-				$result->dishes[] = new Dish($dishlow, $price, NULL, $group);
-			}
+		foreach ($weekly_menu as $item) {
+			$row = $item->find("div.food-menu-item__row", 0);
+			$name = html_entity_decode($row->find("div.food-menu-item__name", 0)->plaintext);
+			$price = html_entity_decode($row->find("div.food-menu-item__price", 0)->plaintext);
+			$result->dishes[] = new Dish($name, $price, NULL, "Týdenní nabídka");
 		}
 
 		return $result;
