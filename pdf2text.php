@@ -101,7 +101,7 @@ class PDF2Text {
 			$currentObject = $objects[$i];
 
 			// Prevent time-out
-			@set_time_limit ();
+			@set_time_limit (0);
 			if($this->showprogress) {
 //				echo ". ";
 				flush(); ob_flush();
